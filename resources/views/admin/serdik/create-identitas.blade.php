@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Identitas</a>
                         </li>
                         <li class="nav-item">
@@ -24,9 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('serdik.create.bahasa', ['user_id' => $data->user_id])}}">Bahasa</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{route('serdik.create.hobi', ['user_id' => $data->user_id])}}">Hobi</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('serdik.create.pasangan', ['user_id' => $data->user_id])}}">Pasangan</a>
                         </li>
@@ -228,6 +229,16 @@
                                     <label class="col-sm-12">Penyakit Yang Sering Di Derita</label>
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" name="penyakit_sering_diderita" value="{{$data->penyakit_sering_diderita}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12">Foto</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" name="file"/>
+                                        <input type="hidden" class="form-control" name="file_existing" value="{{$data->foto_profil}}"/>
+                                        @if($data->foto_profil)
+                                        <a href="{{asset('admin/media/foto-profil-peserta/'.$data->foto_profil)}}" target="_blank"><small class="form-text text-muted">Klik untuk melihat foto</small></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -16,7 +16,6 @@ class ImportSerdik implements ToCollection, WithStartRow
     */
     public function collection(Collection $rows)
     {
-
         foreach ($rows as $row) 
         {
             DB::table('users')->insert([

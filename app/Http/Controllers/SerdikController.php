@@ -67,6 +67,17 @@ class SerdikController extends Controller
     public function saveIdentitas(Request $request)
     {
 
+        $file = $request->file('file');
+        $fileName = NULL;
+
+        if ($file) {
+            $fileName = time() . "_" . $file->getClientOriginalName();
+            $file_destinationPath = public_path() . '/admin/media/foto-profil-peserta';
+            $file->move($file_destinationPath, $fileName);
+        }else{
+            $fileName = $request->file_existing;
+        }
+
         $data = DB::table('t_identitas')->where('user_id', $request->user_id)->update([
             "nama_lengkap" => $request->nama_lengkap,
             "nama_panggilan" => $request->nama_panggilan,
@@ -95,6 +106,7 @@ class SerdikController extends Controller
             "tinggi_badan" => $request->tinggi_badan,
             "gol_darah" => $request->gol_darah,
             "penyakit_sering_diderita" => $request->penyakit_sering_diderita,
+            "foto_profil" => $fileName,
             "updated_at" => date("Y-m-d H:i:s"),
             "updated_by" => Auth::user()->name
         ]);
